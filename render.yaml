@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: sentinelpr-bot
+    env: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: GOOGLE_API_KEYS
+        value: GOOGLE_API_KEY1,GOOGLE_API_KEY2
+      - key: GOOGLE_API_KEY1
+        sync: false
+      - key: GOOGLE_API_KEY2
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_WEBHOOK_SECRET
+        sync: false
