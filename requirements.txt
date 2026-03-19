@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+
+langgraph
+langchain
+langchain-google-genai
+google-generativeai
+
+httpx
+python-dotenv
+
+prometheus-client
+pydantic
+pydantic-settings
+
+pytest
+pytest-asyncio

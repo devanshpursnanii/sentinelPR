@@ -1,0 +1,35 @@
+# .github/workflows/trigger-bot.yml
+name: Trigger Code Review Bot
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  notify-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send webhook to bot
+        run: |
+          PAYLOAD=$(cat <<EOF
+          {
+            "action": "${{ github.event.action }}",
+            "pull_request": {
+              "number": ${{ github.event.pull_request.number }},
+              "diff_url": "${{ github.event.pull_request.diff_url }}"
+            },
+            "repository": {
+              "full_name": "${{ github.repository }}"
+            }
+          }
+          EOF
+          )
+          
+          SIGNATURE=$(echo -n "$PAYLOAD" | \
+            openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}" | \
+            awk '{print "sha256="$2}')
+          
+          curl -X POST ${{ secrets.BOT_URL }}/webhook/github \
+            -H "Content-Type: application/json" \
+            -H "X-Hub-Signature-256: $SIGNATURE" \
+            -d "$PAYLOAD"
