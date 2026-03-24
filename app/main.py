@@ -44,9 +44,9 @@ async def github_webhook(
     
     try:
         try:
-            diff = await fetch_diff(diff_url)
-        except ValueError:
-            return {"status": "invalid diff"}
+            diff = await fetch_diff(diff_url, repo_full_name, pr_number)
+        except ValueError as exc:
+            return {"status": "invalid diff", "detail": str(exc)}
 
         review = await run_review(diff, repo_full_name, pr_number)
         await post_comment(repo_full_name, pr_number, review)
