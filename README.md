@@ -6,7 +6,7 @@ A FastAPI-based GitHub PR review bot that runs parallel LLM agents and posts str
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 
-## What is this?
+## What is SentinelPR?
 SentinelPR receives GitHub pull request webhooks, fetches the PR diff, runs security and quality reviews in parallel using Gemini via LangChain, and posts a synthesized comment back to the PR. It exposes Prometheus metrics and includes a Docker Compose stack with Prometheus and Grafana.
 
 ## Live Demo
