@@ -13,7 +13,9 @@ SentinelPR receives GitHub pull request webhooks, fetches the PR diff, runs secu
 https://sentinelpr.onrender.com
 
 health check -> https://sentinelpr.onrender.com/health
+
 webhook -> https://sentinelpr.onrender.com/webhook/github
+
 metrics -> https://sentinelpr.onrender.com/metrics
 
 ## Architecture
